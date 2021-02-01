@@ -8,6 +8,7 @@ inputs:
   github-token:
     default: ${{ github.token }}
   pulumi-version:
+    description: Version of the Pulumi CLI to install
     default: latest
 runs:
   using: node12
