@@ -1,0 +1,14 @@
+name: Setup Pulumi
+description: Set up Pulumi CLI in your GitHub Actions workflow
+author: Sora Morimoto
+branding:
+  icon: package
+  color: blue
+inputs:
+  github-token:
+    default: ${{ github.token }}
+  pulumi-version:
+    default: latest
+runs:
+  using: node12
+  main: dist/index.js
