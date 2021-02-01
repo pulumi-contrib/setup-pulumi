@@ -1,0 +1,7 @@
+{
+  "name": "setup-pulumi",
+  "version": "0.0.0",
+  "author": "Sora Morimoto <sora@morimoto.io>",
+  "license": "ISC",
+  "private": true
+}
