@@ -1,20 +1,12 @@
-name: Main workflow
+name: Hygiene
 
 on:
   - pull_request
   - push
 
 jobs:
-  build:
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - macos-latest
-          - ubuntu-latest
-          - windows-latest
-
-    runs-on: ${{ matrix.os }}
+  hygiene:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -47,6 +39,3 @@ jobs:
             git diff
             exit 1
           fi
-
-      - name: Use latest Pulumi
-        uses: ./
