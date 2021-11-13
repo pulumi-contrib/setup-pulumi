@@ -6,7 +6,9 @@ async function run() {
   try {
     await acquirePulumi();
   } catch (error) {
-    core.setFailed(error.message);
+    if (error instanceof Error) {
+      core.setFailed(error.message);
+    }
   }
 }
 

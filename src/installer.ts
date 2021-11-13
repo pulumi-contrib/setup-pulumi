@@ -39,7 +39,7 @@ async function getLatestVersion() {
   const octokit = github.getOctokit(GITHUB_TOKEN);
   const {
     data: { tag_name: version },
-  } = await octokit.repos.getLatestRelease({
+  } = await octokit.rest.repos.getLatestRelease({
     owner: "pulumi",
     repo: "pulumi",
   });
