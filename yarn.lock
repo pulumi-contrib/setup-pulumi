@@ -72,14 +72,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@actions/io@npm:1.1.1":
-  version: 1.1.1
-  resolution: "@actions/io@npm:1.1.1"
-  checksum: d291869b19ac5eea87697100fe51849ea5bacedd556f12789629a5e4ba722fc0daadb37374892301b1c446d1d3b9798ec0fea6ad39e08bccb4ec39bbffb3263e
-  languageName: node
-  linkType: hard
-
-"@actions/io@npm:^1.0.1, @actions/io@npm:^1.1.1":
+"@actions/io@npm:1.1.2, @actions/io@npm:^1.0.1, @actions/io@npm:^1.1.1":
   version: 1.1.2
   resolution: "@actions/io@npm:1.1.2"
   checksum: 3c6583c4557abf6c95e9cfc9b6377045e65ba2c5dd4863f4feedd6be9daf4f6b60e588ab0151d5626b5f8320a37f05b8d44ab5c329b8c19f65be31b0616e1464
@@ -2934,7 +2927,7 @@ __metadata:
     "@actions/core": 1.6.0
     "@actions/exec": 1.1.0
     "@actions/github": 5.0.0
-    "@actions/io": 1.1.1
+    "@actions/io": 1.1.2
     "@actions/tool-cache": 1.7.1
     "@types/node": 16.11.7
     "@typescript-eslint/eslint-plugin": 5.3.1
