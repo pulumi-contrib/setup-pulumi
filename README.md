@@ -1,7 +1,6 @@
 # setup-pulumi
 
-[![Test](https://github.com/pulumi-contrib/setup-pulumi/actions/workflows/test.yml/badge.svg)](https://github.com/pulumi-contrib/setup-pulumi/actions)
-[![Hygiene](https://github.com/pulumi-contrib/setup-pulumi/actions/workflows/hygiene.yml/badge.svg)](https://github.com/pulumi-contrib/setup-pulumi/actions)
+[![Builds, tests & co](https://github.com/pulumi-contrib/setup-pulumi/actions/workflows/main.yml/badge.svg)](https://github.com/pulumi-contrib/setup-pulumi/actions)
 [![CodeQL](https://github.com/pulumi-contrib/setup-pulumi/actions/workflows/codeql.yml/badge.svg)](https://github.com/pulumi-contrib/setup-pulumi/actions)
 
 Set up and cache the Pulumi CLI.
