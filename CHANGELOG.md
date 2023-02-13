@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Update default runtime to node16.
+
 ## [1.0.0] - 2021-02-01
 
 - Initial release
