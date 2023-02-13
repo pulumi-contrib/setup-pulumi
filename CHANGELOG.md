@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [2.0.0] - 2023-02-14
+
 ### Changed
 
 - Update default runtime to node16.
@@ -17,5 +19,6 @@ and this project adheres to
 - Initial release
 
 [unreleased]:
-  https://github.com/pulumi-contrib/setup-pulumi/compare/v1.0.0...HEAD
+  https://github.com/pulumi-contrib/setup-pulumi/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/pulumi-contrib/setup-pulumi/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/pulumi-contrib/setup-pulumi/releases/tag/v1.0.0
