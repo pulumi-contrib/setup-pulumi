@@ -1,10 +1,11 @@
+import * as os from "node:os";
+import * as path from "node:path";
+
 import * as core from "@actions/core";
 import { exec } from "@actions/exec";
 import * as github from "@actions/github";
 import * as io from "@actions/io";
 import * as tc from "@actions/tool-cache";
-import * as os from "os";
-import * as path from "path";
 
 import { GITHUB_TOKEN, PULUMI_VERSION } from "./constants";
 
@@ -15,23 +16,29 @@ const IS_WINDOWS = platform === "win32";
 
 function getPlatform() {
   switch (platform) {
-    case "darwin":
+    case "darwin": {
       return "darwin";
-    case "linux":
+    }
+    case "linux": {
       return "linux";
-    case "win32":
+    }
+    case "win32": {
       return "windows";
-    default:
+    }
+    default: {
       throw new Error(`Unsupported platform: ${platform}`);
+    }
   }
 }
 
-function getArch() {
+function getArchitecture() {
   switch (arch) {
-    case "x64":
+    case "x64": {
       return "x64";
-    default:
+    }
+    default: {
       throw new Error(`Unsupported architecture: ${arch}`);
+    }
   }
 }
 
@@ -57,16 +64,16 @@ async function getVersion(version: string) {
 
 function composeDownloadUrl(version: string) {
   const platform = getPlatform();
-  const arch = getArch();
-  const ext = IS_WINDOWS ? "zip" : "tar.gz";
-  const url = `https://get.pulumi.com/releases/sdk/pulumi-${version}-${platform}-${arch}.${ext}`;
+  const architecture = getArchitecture();
+  const extension = IS_WINDOWS ? "zip" : "tar.gz";
+  const url = `https://get.pulumi.com/releases/sdk/pulumi-${version}-${platform}-${architecture}.${extension}`;
   return url;
 }
 
-function addPath(baseDir: string) {
+function addPath(baseDirectory: string) {
   const pulumiPath = IS_WINDOWS
-    ? path.join(baseDir, "Pulumi", "bin")
-    : path.join(baseDir, "pulumi");
+    ? path.join(baseDirectory, "Pulumi", "bin")
+    : path.join(baseDirectory, "pulumi");
   core.addPath(pulumiPath);
 }
 

@@ -16891,6 +16891,10 @@ __nccwpck_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
 var core = __nccwpck_require__(2186);
+;// CONCATENATED MODULE: external "node:os"
+const external_node_os_namespaceObject = require("node:os");
+;// CONCATENATED MODULE: external "node:path"
+const external_node_path_namespaceObject = require("node:path");
 // EXTERNAL MODULE: ./node_modules/@actions/exec/lib/exec.js
 var exec = __nccwpck_require__(1514);
 // EXTERNAL MODULE: ./node_modules/@actions/github/lib/github.js
@@ -16899,10 +16903,6 @@ var github = __nccwpck_require__(5438);
 var io = __nccwpck_require__(7436);
 // EXTERNAL MODULE: ./node_modules/@actions/tool-cache/lib/tool-cache.js
 var tool_cache = __nccwpck_require__(7784);
-// EXTERNAL MODULE: external "os"
-var external_os_ = __nccwpck_require__(2037);
-// EXTERNAL MODULE: external "path"
-var external_path_ = __nccwpck_require__(1017);
 ;// CONCATENATED MODULE: ./src/constants.ts
 
 const GITHUB_TOKEN = core.getInput("github-token");
@@ -16917,27 +16917,33 @@ const PULUMI_VERSION = core.getInput("pulumi-version");
 
 
 
-const platform = external_os_.platform();
-const arch = external_os_.arch();
+const platform = external_node_os_namespaceObject.platform();
+const arch = external_node_os_namespaceObject.arch();
 const IS_WINDOWS = platform === "win32";
 function getPlatform() {
     switch (platform) {
-        case "darwin":
+        case "darwin": {
             return "darwin";
-        case "linux":
+        }
+        case "linux": {
             return "linux";
-        case "win32":
+        }
+        case "win32": {
             return "windows";
-        default:
+        }
+        default: {
             throw new Error(`Unsupported platform: ${platform}`);
+        }
     }
 }
-function getArch() {
+function getArchitecture() {
     switch (arch) {
-        case "x64":
+        case "x64": {
             return "x64";
-        default:
+        }
+        default: {
             throw new Error(`Unsupported architecture: ${arch}`);
+        }
     }
 }
 async function getLatestVersion() {
@@ -16959,15 +16965,15 @@ async function getVersion(version) {
 }
 function composeDownloadUrl(version) {
     const platform = getPlatform();
-    const arch = getArch();
-    const ext = IS_WINDOWS ? "zip" : "tar.gz";
-    const url = `https://get.pulumi.com/releases/sdk/pulumi-${version}-${platform}-${arch}.${ext}`;
+    const architecture = getArchitecture();
+    const extension = IS_WINDOWS ? "zip" : "tar.gz";
+    const url = `https://get.pulumi.com/releases/sdk/pulumi-${version}-${platform}-${architecture}.${extension}`;
     return url;
 }
-function addPath(baseDir) {
+function addPath(baseDirectory) {
     const pulumiPath = IS_WINDOWS
-        ? external_path_.join(baseDir, "Pulumi", "bin")
-        : external_path_.join(baseDir, "pulumi");
+        ? external_node_path_namespaceObject.join(baseDirectory, "Pulumi", "bin")
+        : external_node_path_namespaceObject.join(baseDirectory, "pulumi");
     core.addPath(pulumiPath);
 }
 async function acquirePulumi() {
@@ -17002,6 +17008,7 @@ async function run() {
         }
     }
 }
+// eslint-disable-next-line unicorn/prefer-top-level-await
 void run();
 
 })();
