@@ -16625,6 +16625,210 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 9042:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.PULUMI_VERSION = exports.GITHUB_TOKEN = void 0;
+const core = __importStar(__nccwpck_require__(2186));
+exports.GITHUB_TOKEN = core.getInput("github-token");
+exports.PULUMI_VERSION = core.getInput("pulumi-version");
+
+
+/***/ }),
+
+/***/ 6144:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core = __importStar(__nccwpck_require__(2186));
+const installer_1 = __nccwpck_require__(2574);
+async function run() {
+    try {
+        await (0, installer_1.acquirePulumi)();
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            core.setFailed(error.message);
+        }
+    }
+}
+// eslint-disable-next-line unicorn/prefer-top-level-await
+void run();
+
+
+/***/ }),
+
+/***/ 2574:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.acquirePulumi = void 0;
+const os = __importStar(__nccwpck_require__(612));
+const path = __importStar(__nccwpck_require__(9411));
+const core = __importStar(__nccwpck_require__(2186));
+const exec_1 = __nccwpck_require__(1514);
+const github = __importStar(__nccwpck_require__(5438));
+const io = __importStar(__nccwpck_require__(7436));
+const tc = __importStar(__nccwpck_require__(7784));
+const constants_1 = __nccwpck_require__(9042);
+const platform = os.platform();
+const arch = os.arch();
+const IS_WINDOWS = platform === "win32";
+function getPlatform() {
+    switch (platform) {
+        case "darwin": {
+            return "darwin";
+        }
+        case "linux": {
+            return "linux";
+        }
+        case "win32": {
+            return "windows";
+        }
+        default: {
+            throw new Error(`Unsupported platform: ${platform}`);
+        }
+    }
+}
+function getArchitecture() {
+    switch (arch) {
+        case "x64": {
+            return "x64";
+        }
+        default: {
+            throw new Error(`Unsupported architecture: ${arch}`);
+        }
+    }
+}
+async function getLatestVersion() {
+    const octokit = github.getOctokit(constants_1.GITHUB_TOKEN);
+    const { data: { tag_name: version }, } = await octokit.rest.repos.getLatestRelease({
+        owner: "pulumi",
+        repo: "pulumi",
+    });
+    return version;
+}
+async function getVersion(version) {
+    if (version === "latest") {
+        const latestVersion = await getLatestVersion();
+        return latestVersion;
+    }
+    else {
+        return version;
+    }
+}
+function composeDownloadUrl(version) {
+    const platform = getPlatform();
+    const architecture = getArchitecture();
+    const extension = IS_WINDOWS ? "zip" : "tar.gz";
+    const url = `https://get.pulumi.com/releases/sdk/pulumi-${version}-${platform}-${architecture}.${extension}`;
+    return url;
+}
+function addPath(baseDirectory) {
+    const pulumiPath = IS_WINDOWS
+        ? path.join(baseDirectory, "Pulumi", "bin")
+        : path.join(baseDirectory, "pulumi");
+    core.addPath(pulumiPath);
+}
+async function acquirePulumi() {
+    const version = await getVersion(constants_1.PULUMI_VERSION);
+    const downloadUrl = composeDownloadUrl(version);
+    const cachedPath = tc.find("pulumi", version);
+    if (cachedPath === "") {
+        const downloadedPath = await tc.downloadTool(downloadUrl);
+        const extractedPath = IS_WINDOWS
+            ? await tc.extractZip(downloadedPath)
+            : await tc.extractTar(downloadedPath);
+        const cachedPath = await tc.cacheDir(extractedPath, "pulumi", version);
+        addPath(cachedPath);
+    }
+    else {
+        addPath(cachedPath);
+    }
+    const pulumiBinPath = await io.which("pulumi", true);
+    await (0, exec_1.exec)(pulumiBinPath, ["version"]);
+}
+exports.acquirePulumi = acquirePulumi;
+
+
+/***/ }),
+
 /***/ 9491:
 /***/ ((module) => {
 
@@ -16694,6 +16898,22 @@ module.exports = require("https");
 
 "use strict";
 module.exports = require("net");
+
+/***/ }),
+
+/***/ 612:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:os");
+
+/***/ }),
+
+/***/ 9411:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:path");
 
 /***/ }),
 
@@ -16882,153 +17102,17 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__nccwpck_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-// ESM COMPAT FLAG
-__nccwpck_require__.r(__webpack_exports__);
-
-// EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
-var core = __nccwpck_require__(2186);
-;// CONCATENATED MODULE: external "node:os"
-const external_node_os_namespaceObject = require("node:os");
-;// CONCATENATED MODULE: external "node:path"
-const external_node_path_namespaceObject = require("node:path");
-// EXTERNAL MODULE: ./node_modules/@actions/exec/lib/exec.js
-var exec = __nccwpck_require__(1514);
-// EXTERNAL MODULE: ./node_modules/@actions/github/lib/github.js
-var github = __nccwpck_require__(5438);
-// EXTERNAL MODULE: ./node_modules/@actions/io/lib/io.js
-var io = __nccwpck_require__(7436);
-// EXTERNAL MODULE: ./node_modules/@actions/tool-cache/lib/tool-cache.js
-var tool_cache = __nccwpck_require__(7784);
-;// CONCATENATED MODULE: ./src/constants.ts
-
-const GITHUB_TOKEN = core.getInput("github-token");
-const PULUMI_VERSION = core.getInput("pulumi-version");
-
-;// CONCATENATED MODULE: ./src/installer.ts
-
-
-
-
-
-
-
-
-const platform = external_node_os_namespaceObject.platform();
-const arch = external_node_os_namespaceObject.arch();
-const IS_WINDOWS = platform === "win32";
-function getPlatform() {
-    switch (platform) {
-        case "darwin": {
-            return "darwin";
-        }
-        case "linux": {
-            return "linux";
-        }
-        case "win32": {
-            return "windows";
-        }
-        default: {
-            throw new Error(`Unsupported platform: ${platform}`);
-        }
-    }
-}
-function getArchitecture() {
-    switch (arch) {
-        case "x64": {
-            return "x64";
-        }
-        default: {
-            throw new Error(`Unsupported architecture: ${arch}`);
-        }
-    }
-}
-async function getLatestVersion() {
-    const octokit = github.getOctokit(GITHUB_TOKEN);
-    const { data: { tag_name: version }, } = await octokit.rest.repos.getLatestRelease({
-        owner: "pulumi",
-        repo: "pulumi",
-    });
-    return version;
-}
-async function getVersion(version) {
-    if (version === "latest") {
-        const latestVersion = await getLatestVersion();
-        return latestVersion;
-    }
-    else {
-        return version;
-    }
-}
-function composeDownloadUrl(version) {
-    const platform = getPlatform();
-    const architecture = getArchitecture();
-    const extension = IS_WINDOWS ? "zip" : "tar.gz";
-    const url = `https://get.pulumi.com/releases/sdk/pulumi-${version}-${platform}-${architecture}.${extension}`;
-    return url;
-}
-function addPath(baseDirectory) {
-    const pulumiPath = IS_WINDOWS
-        ? external_node_path_namespaceObject.join(baseDirectory, "Pulumi", "bin")
-        : external_node_path_namespaceObject.join(baseDirectory, "pulumi");
-    core.addPath(pulumiPath);
-}
-async function acquirePulumi() {
-    const version = await getVersion(PULUMI_VERSION);
-    const downloadUrl = composeDownloadUrl(version);
-    const cachedPath = tool_cache.find("pulumi", version);
-    if (cachedPath === "") {
-        const downloadedPath = await tool_cache.downloadTool(downloadUrl);
-        const extractedPath = IS_WINDOWS
-            ? await tool_cache.extractZip(downloadedPath)
-            : await tool_cache.extractTar(downloadedPath);
-        const cachedPath = await tool_cache.cacheDir(extractedPath, "pulumi", version);
-        addPath(cachedPath);
-    }
-    else {
-        addPath(cachedPath);
-    }
-    const pulumiBinPath = await io.which("pulumi", true);
-    await (0,exec.exec)(pulumiBinPath, ["version"]);
-}
-
-;// CONCATENATED MODULE: ./src/index.ts
-
-
-async function run() {
-    try {
-        await acquirePulumi();
-    }
-    catch (error) {
-        if (error instanceof Error) {
-            core.setFailed(error.message);
-        }
-    }
-}
-// eslint-disable-next-line unicorn/prefer-top-level-await
-void run();
-
-})();
-
-module.exports = __webpack_exports__;
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __nccwpck_require__(6144);
+/******/ 	module.exports = __webpack_exports__;
+/******/ 	
 /******/ })()
 ;
