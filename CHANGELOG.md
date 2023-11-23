@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Update default runtime to node20.
+
 ## [2.0.0] - 2023-02-14
 
 ### Changed
