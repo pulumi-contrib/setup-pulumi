@@ -30,15 +30,15 @@ jobs:
 
     steps:
       - name: Checkout tree
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Use latest Pulumi
-        uses: pulumi-contrib/setup-pulumi@v2
+        uses: pulumi-contrib/setup-pulumi@v3
 
       # or
 
       - name: Use latest Pulumi
-        uses: pulumi-contrib/setup-pulumi@v2
+        uses: pulumi-contrib/setup-pulumi@v3
         with:
           pulumi-version: v3.54.0
 ```
@@ -50,7 +50,7 @@ specify the version of the action _itself_.
 
 ```yml
 - name: Use latest Pulumi
-  uses: pulumi-contrib/setup-pulumi@v2
+  uses: pulumi-contrib/setup-pulumi@v3
   #                                ^^^
 ```
 
@@ -62,11 +62,11 @@ workflow when we publish a breaking update and increase the major version.
 ```yml
 steps:
   # Reference the major version of a release (most recommended)
-  - uses: pulumi-contrib/setup-pulumi@v2
+  - uses: pulumi-contrib/setup-pulumi@v3
   # Reference a specific commit (most strict)
-  - uses: pulumi-contrib/setup-pulumi@8b0eafe
+  - uses: pulumi-contrib/setup-pulumi@e614842
   # Reference a semver version of a release (not recommended)
-  - uses: pulumi-contrib/setup-pulumi@v2.0.0
+  - uses: pulumi-contrib/setup-pulumi@v3.0.0
   # Reference a branch (most dangerous)
   - uses: pulumi-contrib/setup-pulumi@master
 ```
