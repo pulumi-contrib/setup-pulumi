@@ -33162,7 +33162,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.acquirePulumi = void 0;
+exports.acquirePulumi = acquirePulumi;
 const os = __importStar(__nccwpck_require__(612));
 const path = __importStar(__nccwpck_require__(9411));
 const core = __importStar(__nccwpck_require__(2186));
@@ -33246,7 +33246,6 @@ async function acquirePulumi() {
     const pulumiBinPath = await io.which("pulumi", true);
     await (0, exec_1.exec)(pulumiBinPath, ["version"]);
 }
-exports.acquirePulumi = acquirePulumi;
 
 
 /***/ }),
