@@ -11,5 +11,5 @@ inputs:
     description: Version of the Pulumi CLI to install
     default: latest
 runs:
-  using: node20
+  using: node24
   main: dist/index.js
