@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [4.0.0] - 2026-06-14
+
+### Changed
+
+- Update default runtime to node24.
+
 ## [3.0.0] - 2023-11-24
 
 ### Changed
@@ -25,7 +31,8 @@ and this project adheres to
 - Initial release
 
 [unreleased]:
-  https://github.com/pulumi-contrib/setup-pulumi/compare/v3.0.0...HEAD
+  https://github.com/pulumi-contrib/setup-pulumi/compare/v4.0.0...HEAD
+[4.0.0]: https://github.com/pulumi-contrib/setup-pulumi/compare/v3.0.0...v4.0.0
 [3.0.0]: https://github.com/pulumi-contrib/setup-pulumi/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/pulumi-contrib/setup-pulumi/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/pulumi-contrib/setup-pulumi/releases/tag/v1.0.0

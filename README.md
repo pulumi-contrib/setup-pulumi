@@ -33,12 +33,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Use latest Pulumi
-        uses: pulumi-contrib/setup-pulumi@v3
+        uses: pulumi-contrib/setup-pulumi@v4
 
       # or
 
       - name: Use latest Pulumi
-        uses: pulumi-contrib/setup-pulumi@v3
+        uses: pulumi-contrib/setup-pulumi@v4
         with:
           pulumi-version: v3.54.0
 ```
@@ -50,23 +50,23 @@ specify the version of the action _itself_.
 
 ```yml
 - name: Use latest Pulumi
-  uses: pulumi-contrib/setup-pulumi@v3
+  uses: pulumi-contrib/setup-pulumi@v4
   #                                ^^^
 ```
 
 We recommend that you include the version of the action. We adhere to
 [semantic versioning](https://semver.org), it's safe to use the major version
-(`v1`) in your workflow. If you use the master branch, this could break your
+(`v4`) in your workflow. If you use the master branch, this could break your
 workflow when we publish a breaking update and increase the major version.
 
 ```yml
 steps:
   # Reference the major version of a release (most recommended)
-  - uses: pulumi-contrib/setup-pulumi@v3
+  - uses: pulumi-contrib/setup-pulumi@v4
   # Reference a specific commit (most strict)
   - uses: pulumi-contrib/setup-pulumi@e614842
   # Reference a semver version of a release (not recommended)
-  - uses: pulumi-contrib/setup-pulumi@v3.0.0
+  - uses: pulumi-contrib/setup-pulumi@v4.0.0
   # Reference a branch (most dangerous)
   - uses: pulumi-contrib/setup-pulumi@master
 ```
